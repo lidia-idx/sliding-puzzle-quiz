@@ -16,12 +16,38 @@
         emptyLi.innerHTML = "0";
         elem.appendChild(emptyLi);
 
+        // the keys are the ordinal index of the tile and
+        // the value is the merged (x,y)-coordinate in the 3x3 space
+        // merged for the sake of easier calculations of canSwap()
+        // as the tile can only swap to the empty space if the difference of the values is 1 or 10
+        var indexXY = {
+            0: "00",
+            1: "01",
+            2: "02",
+            3: "10",
+            4: "11",
+            5: "12",
+            6: "20",
+            7: "21",
+            8: "22"
+        };
+
         var tiles = elem.children;
-        console.log(tiles[0]);
+        init(tiles);
 
+        function init(tiles){
+            for (var i = 0; i < tiles.length; i++){
+                tiles[i].setAttribute("data-xy", indexXY[i]);
+                console.log(tiles[i]);
+            }
+        }
 
-        function canSwap(elem){
-            return true; //TODO
+        function canSwap(tile){
+            var empty = getEmptyTile();
+            var emptyXY = empty.getAttribute("data-xy");
+            var tileXY = tile.getAttribute(("data-xy"));
+            var diff = Math.abs(emptyXY - tileXY);
+            return ((diff === 1 ) || (diff === 10));
         }
 
         // return tile or null if no tile has been clicked
@@ -42,7 +68,6 @@
 
         elem.addEventListener("click", function(event) {
             console.log("click: " + event.target.className);
-            event.target.style = "border-color: blue";
 
             var tile = getClickedTile(event);
             if (tile === null){
@@ -54,8 +79,16 @@
         // swaps tile with empty element
         function swap(tile){
             if (canSwap(tile)){
-                console.log("swapping");
-                //TODO
+                event.target.style = "border-color: blue"; // debug
+                var empty = getEmptyTile();
+                var num = tile.innerHTML;
+                console.log("swapping " + num);
+                tile.setAttribute("class", "tile empty");
+                empty.setAttribute("class", "tile");
+                empty.innerHTML = num;
+                tile.innerHTML = "0";
+            } else {
+                event.target.style = "border-color: violet"; // debug
             }
         }
 
