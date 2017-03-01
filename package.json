@@ -1,0 +1,24 @@
+{
+  "name": "sliding-puzzle-quiz",
+  "version": "0.1.0",
+  "description": "Sliding Puzzle",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lidia-idx/sliding-puzzle-quiz.git"
+  },
+  "author": "Lidia Khmylko",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/lidia-idx/sliding-puzzle-quiz/issues"
+  },
+  "homepage": "https://github.com/lidia-idx/sliding-puzzle-quiz#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}

@@ -1,0 +1,39 @@
+.sliding-puzzle-figure {
+  width: 12em; }
+
+ul {
+  list-style-type: none;
+  padding: 0.3em 0.1em;
+  background: black;
+  border-color: black;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  text-align: center;
+  overflow: hidden; }
+
+.tile {
+  display: inline-block;
+  border-bottom: 0.3em solid gray;
+  border-right: 0.3em solid gray;
+  border-left: 0.3em solid #ccc;
+  border-top: 0.3em solid #ccc;
+  margin: -0.01em -0.1em;
+  padding: 0.9em 1em 0.9em 1em;
+  font-family: Helvetica, sans-serif;
+  font-size: larger;
+  text-align: center;
+  background: white; }
+
+.tile.empty {
+  color: black;
+  background: black;
+  border: 0.3em solid black; }
+
+figcaption {
+  font-style: italic;
+  font-family: Helvetica, sans-serif;
+  font-size: large;
+  text-align: center;
+  padding: 5px 0 5px 0; }

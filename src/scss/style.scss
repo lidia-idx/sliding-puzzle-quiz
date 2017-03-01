@@ -1,0 +1,55 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+$font-family: Helvetica, sans-serif;
+$font-color: black;
+$bgr-color: black;
+$border-color: black;
+
+.sliding-puzzle-figure{
+  width: 12em;
+}
+
+ul{
+  list-style-type: none;
+  padding: 0.3em 0.1em;
+  background: black;
+  border-color: $border-color;
+  @include border-radius(5px);
+  text-align:center;
+  overflow: hidden;
+}
+
+.tile {
+  display: inline-block;
+  border-bottom: 0.3em solid gray;
+  border-right: 0.3em solid gray;
+  border-left: 0.3em solid #ccc;
+  border-top: 0.3em solid #ccc;
+  margin: -0.01em -0.1em;
+  padding: 0.9em 1em 0.9em 1em;
+  font-family: $font-family;
+  font-size: larger;
+  text-align: center;
+  background: white;
+
+}
+
+.tile.empty {
+  color: $bgr-color;
+  background: $bgr-color;
+  border: 0.3em solid $bgr-color;
+
+}
+
+figcaption{
+  font-style: italic;
+  font-family: $font-family;
+  font-size: large;
+  text-align: center;
+  padding: 5px 0 5px 0;
+}

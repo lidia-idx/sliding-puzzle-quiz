@@ -8,7 +8,6 @@
 
     function Puzzle(options) {
         var elem = options.elem;
-        console.log(elem.className);
 
         //TODO: move to init function
         var emptyLi = document.createElement("li");
@@ -79,7 +78,7 @@
         // swaps tile with empty element
         function swap(tile){
             if (canSwap(tile)){
-                event.target.style = "border-color: blue"; // debug
+                //tile.style = "border-color: blue"; // debug
                 var empty = getEmptyTile();
                 var num = tile.innerHTML;
                 console.log("swapping " + num);
@@ -88,19 +87,19 @@
                 empty.innerHTML = num;
                 tile.innerHTML = "0";
             } else {
-                event.target.style = "border-color: violet"; // debug
+                //tile.style = "border-color: violet"; // debug
             }
         }
 
     }
+
     function ready(){
         var puzzle = new Puzzle({
             elem: document.querySelector(".sliding-puzzle")
         });
-
     }
 
     document.addEventListener("DOMContentLoaded", ready);
-})();
 
+})();
 
