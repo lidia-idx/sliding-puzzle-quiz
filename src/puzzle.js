@@ -4,16 +4,11 @@
 
 "use strict";
 
-(function(){
+var p = (function(){
+    var puzzle;
 
     function Puzzle(options) {
         var elem = options.elem;
-
-        //TODO: move to init function
-        var emptyLi = document.createElement("li");
-        emptyLi.setAttribute("class", "tile empty");
-        emptyLi.innerHTML = "0";
-        elem.appendChild(emptyLi);
 
         // the keys are the ordinal index of the tile and
         // the value is the merged (x,y)-coordinate in the 3x3 space
@@ -31,16 +26,44 @@
             8: "22"
         };
 
+        // placeholder for tile design
+        var placeholder = "0";
+
         var tiles = elem.children;
+        createEmpty();
         init(tiles);
+
+        function createEmpty(){
+            var emptyLi = document.createElement("li");
+            emptyLi.setAttribute("class", "tile empty");
+            emptyLi.innerHTML = placeholder;
+            elem.appendChild(emptyLi);
+        }
 
         function init(tiles){
             for (var i = 0; i < tiles.length; i++){
                 tiles[i].setAttribute("data-xy", indexXY[i]);
-                console.log(tiles[i]);
+                //console.log(tiles[i]);
             }
         }
 
+        function shuffle(){
+            //console.log("Shuffling...");
+            var shuffled = shuffle_array(Object.keys(indexXY));
+            //console.log(shuffled);
+            for (var i = 0; i < tiles.length; i++){
+                var n = +shuffled[i];
+                if (n === 0){
+                    tiles[i].setAttribute("class", "tile empty");
+                    tiles[i].innerHTML = placeholder;
+                } else {
+                    tiles[i].setAttribute("class", "tile");
+                    tiles[i].innerHTML = n;
+                }
+            }
+        }
+
+        // A tile can swap into the empty space if they are 1 or 10 apart in merged XY-coordinates
         function canSwap(tile){
             var empty = getEmptyTile();
             var emptyXY = empty.getAttribute("data-xy");
@@ -78,28 +101,51 @@
         // swaps tile with empty element
         function swap(tile){
             if (canSwap(tile)){
-                //tile.style = "border-color: blue"; // debug
                 var empty = getEmptyTile();
                 var num = tile.innerHTML;
-                console.log("swapping " + num);
+                //console.log("swapping " + num);
                 tile.setAttribute("class", "tile empty");
                 empty.setAttribute("class", "tile");
                 empty.innerHTML = num;
-                tile.innerHTML = "0";
-            } else {
-                //tile.style = "border-color: violet"; // debug
+                tile.innerHTML = placeholder;
             }
         }
 
+        this.shuffle = shuffle;
     }
 
     function ready(){
-        var puzzle = new Puzzle({
+        puzzle = new Puzzle({
             elem: document.querySelector(".sliding-puzzle")
         });
     }
 
+    // shuffling an array in-place
+    function shuffle_array(array) {
+        var m = array.length, temp, i;
+
+        // While there remain elements to shuffle
+        while (m) {
+
+            // Pick a remaining element
+            i = Math.floor(Math.random() * m--);
+
+            // And swap it with the current element.
+            temp = array[m];
+            array[m] = array[i];
+            array[i] = temp;
+        }
+
+        return array;
+    }
+
     document.addEventListener("DOMContentLoaded", ready);
 
+    // Exposed shuffle function
+    // Usage: p.shuffle()
+    return {
+        shuffle: function() {
+            puzzle.shuffle();
+        }
+    }
 })();
-
