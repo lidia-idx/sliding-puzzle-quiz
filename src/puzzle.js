@@ -4,7 +4,7 @@
 
 "use strict";
 
-var p = (function(){
+var puzzle = (function(){
     var puzzle;
 
     function Puzzle(options) {
@@ -30,9 +30,9 @@ var p = (function(){
         var placeholder = "0";
 
         var tiles = elem.children;
-        createEmpty();
         init(tiles);
 
+        // placeholder li element for layout
         function createEmpty(){
             var emptyLi = document.createElement("li");
             emptyLi.setAttribute("class", "tile empty");
@@ -40,7 +40,9 @@ var p = (function(){
             elem.appendChild(emptyLi);
         }
 
+        // init the tiles with data-xy attribute for swap calculations later
         function init(tiles){
+            createEmpty();
             for (var i = 0; i < tiles.length; i++){
                 tiles[i].setAttribute("data-xy", indexXY[i]);
                 //console.log(tiles[i]);
@@ -142,7 +144,7 @@ var p = (function(){
     document.addEventListener("DOMContentLoaded", ready);
 
     // Exposed shuffle function
-    // Usage: p.shuffle()
+    // Usage: puzzle.shuffle()
     return {
         shuffle: function() {
             puzzle.shuffle();

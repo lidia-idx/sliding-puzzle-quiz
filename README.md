@@ -1,5 +1,17 @@
 # Sliding Puzzle Quiz
 
+## Results
+
+* Screenshots are under `./screenshots`
+* Puzzle is live under http://aws-website-puzzle-e1vcp.s3-website-us-east-1.amazonaws.com/
+* Sources are under `./src`
+* `style.css` is generated with SASS from `./src/scss/style.scss`
+* Build the project with `npm install`
+* Run SASS with `gulp sass` or `gulp`
+* To shuffle the tiles - type `puzzle.shuffle()` into the console
+
+---
+
 Breathe in, breathe out. **CHECK**
 
 This quiz will be used most importantly to evaluate skill set and the type of tasks/projects you'd be great for. There are many different ways to solve the challenges outlined below, so take your time, and let us know if you have any questions.
